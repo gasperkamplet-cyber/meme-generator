@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="sl">
+<head>
+    <meta charset="UTF-8">
+    <title>Meme Generator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f0f0f0;
+            padding: 20px;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        form {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            display: inline-block;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+
+        input[type="text"], input[type="file"] {
+            width: 300px;
+            padding: 8px;
+            margin: 10px 0;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border: none;
+            background-color: #007BFF;
+            color: white;
+            border-radius: 5px;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        img {
+            margin-top: 20px;
+            max-width: 80%;
+            height: auto;
+            border: 2px solid #333;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Meme Generator</h1>
+
+    <form method="POST" enctype="multipart/form-data">
+        <div>
+            <input type="file" name="image" required>
+        </div>
+        <div>
+            <input type="text" name="top_text" placeholder="Zgornji tekst">
+        </div>
+        <div>
+            <input type="text" name="bottom_text" placeholder="Spodnji tekst">
+        </div>
+        <div>
+            <button type="submit">Generiraj Meme</button>
+        </div>
+    </form>
+
+    {% if meme %}
+        <div>
+            <h2>Vaš Meme:</h2>
+            <img src="{{ url_for('static', filename='memes/' ~ meme) }}" alt="Meme">
+        </div>
+    {% endif %}
+</body>
+</html>
